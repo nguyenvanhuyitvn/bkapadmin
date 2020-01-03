@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Thêm mới thời khóa biểu
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/bang-tin/thoi-khoa-bieu']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Thời khóa biểu</a></li>
+            <li class="active">Thêm mới thời khóa biểu</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Thêm mới thời khóa biểu</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="scheduleple-card">
+                    <mat-card-content>
+                        <div class="action-bar">
+                            <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/bang-tin/thoi-khoa-bieu']" routerLinkActive="router-link-active">Quay lại</button>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <form method="POST" class="content-container" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+                                <mat-form-field hintLabel="Tối đa 50 ký tự">
+                                    <input [(ngModel)]="schedule.scheduleTitle" matInput maxlength="50" [formControl]="scheduleTitle" (change)="ChangeToSlug()" [errorStateMatcher]="matcher" placeholder="Tiêu đề:">
+                                    <mat-hint align="end">{{ scheduleTitle.value?.length || 0}}/50</mat-hint>
+                                    <mat-error *ngIf="scheduleTitle.hasError('required')">
+                                        Tiêu đề: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="schedule.slug" matInput [formControl]="slug" [errorStateMatcher]="matcher" placeholder="Slug:">
+                                    <mat-error *ngIf="slug.hasError('required')">
+                                        Slug: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Select an option</mat-label>
+                                    <mat-select matInput [formControl]="className" [(ngModel)]="schedule.className" [(value)]="schedule.className">
+                                        <mat-option *ngFor="let c of classes" [value]="c.id">{{ c.name }}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="className.hasError('required')">
+                                        Tên lớp: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <label>Tài liệu:</label>
+                                <input type="file" [formControl]="file" name="file" id="file" (change)="uploadFile($event)" style="display:none">
+                                <br>
+                                <div align="left" class="imagediv">
+                                    <span class="visibleimg"></span>
+                                    <span class="showonhover">Tải tài liệu</span>
+                                </div>
+
+                                <mat-slide-toggle class=" scheduleple-margin " [(ngModel)]="schedule.status " [formControl]="status " [color]="color " [checked]="schedule.status ">
+                                    Kích hoạt!
+                                </mat-slide-toggle>
+                                <mat-card-actions class="button">
+                                    <button mat-raised-button color="accent" [routerLink]="['/trang-chu']" routerLinkActive="router-link-active" matTooltip="Hủy yêu cầu">HỦY</button>
+                                    <button mat-raised-button color="primary" type="submit" matTooltip="Gửi yêu cầu">GỬI</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

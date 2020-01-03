@@ -1,0 +1,20 @@
+@import "./../../../assets/dist/css/AdminLTE.min.css";
+@import "./../../../assets/dist/css/skins/_all-skins.min.css";
+body {
+    background-color: #333333 !important;
+}
+
+.user-panel {
+    background: burlywood;
+}
+
+
+/* aside .header {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+ */
+
+aside .sidebar-menu {
+    background-color: white !important;
+}

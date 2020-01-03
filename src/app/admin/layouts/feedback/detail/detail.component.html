@@ -1,0 +1,71 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Chi tiết góp ý
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/gop-y']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Góp ý</a></li>
+            <li class="active">Chi tiết góp ý</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Chi tiết góp ý</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content>
+                        <div class="mat-elevation-z8">
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                    <mat-card-title>Tiêu đề:</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p [innerHTML]="feedback.FbTitle"></p>
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                    <mat-card-title>Email góp ý:</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p [innerHTML]="feedback.Email"></p>
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                    <mat-card-title>Ngày đăng:</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p [innerHTML]="feedback.CreatedDate | date:'dd-MM-yyyy'"></p>
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                    <mat-card-title>Nội dung:</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p [innerHTML]="feedback.FbContent"></p>
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card class="example-card">
+                                <mat-card-actions>
+                                    <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/gop-y']" routerLinkActive="router-link-active">Quay lại</button>
+                                    <button mat-button mat-raised-button color="accent" (click)="apply(feedback.FeedbackId, feedback.Status)" *ngIf="feedback.Status==1">Hủy Duyệt</button>
+                                    <button mat-button mat-raised-button color="accent" (click)="apply(feedback.FeedbackId, feedback.Status)" *ngIf="feedback.Status==0">Duyệt</button>
+                                    <button mat-button mat-raised-button color="warn" (click)="deleteFeeback(feedback.FeedbackId)">Xóa</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

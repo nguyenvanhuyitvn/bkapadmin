@@ -1,0 +1,47 @@
+.main-sidebar {
+    background-color: #ECF0F5 !important;
+}
+
+.user-panel .info {
+    color: grey !important;
+}
+
+.info a {
+    color: grey !important;
+}
+
+.main-menu {
+    margin-top: 20px;
+}
+
+.menu-content {
+    width: 100%;
+    text-align: left;
+    background-color: #ECF0F5;
+    font-size: 16px;
+}
+
+.header {
+    background-color: grey !important;
+    width: 100%;
+    text-align: center;
+    color: #ffffff !important;
+    padding: 8px;
+    margin-top: 15px;
+}
+
+.sidebar-menu {
+    margin-top: 2px;
+}
+
+.menu-icon {
+    margin-right: 10px;
+}
+
+.sidebar-menu .menu-content span {
+    padding: 10px 0px;
+}
+
+.size {
+    width: 150px;
+}

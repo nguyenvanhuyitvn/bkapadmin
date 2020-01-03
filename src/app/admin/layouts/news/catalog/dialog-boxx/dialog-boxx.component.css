@@ -1,0 +1,8 @@
+.mat-dialog-container .dialog-box {
+    width: 550px !important;
+    align-content: center;
+}
+
+mat-form-field {
+    width: 100%;
+}

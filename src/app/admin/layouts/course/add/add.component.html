@@ -1,0 +1,63 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Thêm khóa học
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/khoa-hoc/']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Khóa học</a></li>
+            <li class="active">Thêm khóa học</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Thêm khóa học</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content>
+                        <div class="action-bar">
+                            <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/khoa-hoc']" routerLinkActive="router-link-active">Quay lại</button>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <form method="POST" class="content-container" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+                                <mat-form-field>
+                                    <input [(ngModel)]="course.CourseId" matInput [formControl]="CourseId" [errorStateMatcher]="matcher" placeholder="Mã khóa học:">
+                                    <mat-error *ngIf="CourseId.hasError('required')">
+                                        Mã khóa học: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="course.CourseName" matInput [formControl]="CourseName" [errorStateMatcher]="matcher" placeholder="Tên khóa học:">
+                                    <mat-error *ngIf="CourseName.hasError('required')">
+                                        Tên khóa học: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="course.Description" matInput [formControl]="Description" [errorStateMatcher]="matcher" placeholder="Mô tả khóa học:">
+                                    <mat-error *ngIf="Description.hasError('required')">
+                                        Mô tả khóa học: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-slide-toggle class="example-margin" [(ngModel)]="course.Status" [formControl]="Status" [color]="color" [checked]="course.status">
+                                    Kích hoạt!
+                                </mat-slide-toggle>
+                                <mat-card-actions class="button">
+                                    <button mat-raised-button color="accent" [routerLink]="['/admin/khoa-hoc']" routerLinkActive="router-link-active" matTooltip="Hủy yêu cầu">HỦY</button>
+                                    <button mat-raised-button color="primary" [disabled]="CourseId.invalid || CourseName.invalid" type="submit" matTooltip="Gửi yêu cầu">GỬI</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

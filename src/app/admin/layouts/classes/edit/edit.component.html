@@ -1,0 +1,51 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Sửa thông tin lớp học
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/lop-hoc']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Khóa học</a></li>
+            <li class="active">Sửa thông tin lớp học</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Sửa thông tin lớp học</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content>
+                        <div class="action-bar">
+                            <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/lop-hoc']" routerLinkActive="router-link-active">Quay lại</button>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <form method="PUT" class="content-container" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+                                <mat-form-field>
+                                    <input [(ngModel)]="classes.ClassName" matInput [formControl]="ClassName" [errorStateMatcher]="matcher" placeholder="Tên lớp:">
+                                    <mat-error *ngIf="ClassName.hasError('required')">
+                                        Tên lớp: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-slide-toggle class="example-margin" [(ngModel)]="classes.Status" [formControl]="Status" [color]="color" [checked]="classes.Status">
+                                    Kích hoạt!
+                                </mat-slide-toggle>
+                                <mat-card-actions class="button">
+                                    <button mat-raised-button color="accent" [routerLink]="['/lop-hoc']" routerLinkActive="router-link-active" matTooltip="Hủy yêu cầu">HỦY</button>
+                                    <button mat-raised-button color="primary" type="submit" matTooltip="Gửi yêu cầu">GỬI</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

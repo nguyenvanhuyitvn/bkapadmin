@@ -1,0 +1,32 @@
+.example-container {
+    width: 100%;
+    height: 100%;
+}
+
+.guide-side {
+    width: 25%;
+    height: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    float: right;
+    width: 250px;
+}
+
+.action-link a {
+    cursor: pointer;
+}
+
+.action-bar {
+    margin: 10px 0;
+}
+
+button {
+    padding: 3px;
+    width: 150px;
+}

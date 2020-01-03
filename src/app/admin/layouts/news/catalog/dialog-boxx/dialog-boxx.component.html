@@ -1,0 +1,16 @@
+<!-- dialog-box.component.html -->
+<div class="dialog-box">
+    <h1 mat-dialog-title>Thao tác:: <strong>{{action}}</strong></h1>
+    <div mat-dialog-content>
+        <mat-form-field *ngIf="action != 'Remove'; else elseTemplate">
+            <input placeholder="{{action}} Catagory" matInput [(ngModel)]="local_data.CategoryName">
+        </mat-form-field>
+        <ng-template #elseTemplate>
+            Bạn có chắc chắn muốn xóa: <b>{{local_data.CategoryName}} ?</b>
+        </ng-template>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="doAction()">{{action}}</button>
+        <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+    </div>
+</div>

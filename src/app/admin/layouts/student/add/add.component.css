@@ -1,0 +1,49 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-container>* {
+    width: 100%;
+    padding: 10px;
+}
+
+.content-container input {
+    padding: 3px;
+}
+
+.action-bar {
+    margin-bottom: 5px;
+}
+
+.action-bar button {
+    padding: 3px;
+    width: 150px;
+}
+
+.imagediv {
+    margin-top: 5px;
+}
+
+.imagediv .showonhover {
+    background: red;
+    padding: 20px;
+    opacity: 0.9;
+    color: white;
+    width: 15%;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+mat-form-field {
+    margin-right: 12px;
+}
+
+.birthday {
+    width: 50% !important;
+}
+
+.btn_birthday {
+    width: 10% !important;
+}

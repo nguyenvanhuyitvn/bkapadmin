@@ -1,0 +1,114 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Thêm sinh viên
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/students/list']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Sinh viên</a></li>
+            <li class="active">Thêm sinh viên</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Thêm sinh viên</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content>
+                        <div class="action-bar">
+                            <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/sinh-vien/danh-sach']" routerLinkActive="router-link-active">Quay lại</button>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <form method="PUT" class="content-container" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+                                <mat-form-field>
+                                    <input [(ngModel)]="student.Code" disabled matInput [formControl]="Code" [errorStateMatcher]="matcher" placeholder="Mã sinh viên:">
+                                    <mat-error *ngIf="Code.hasError('isCodeUnique')">
+                                        Mã sinh viên: <strong>đã tồn tại</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="student.Name" matInput [formControl]="Name" [errorStateMatcher]="matcher" placeholder="Tên sinh viên:">
+                                    <mat-error *ngIf="Name.hasError('required')">
+                                        Tên sinh viên: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="student.Password" matInput [formControl]="Password" [errorStateMatcher]="matcher" placeholder="Mật khẩu:">
+                                    <mat-error *ngIf="Password.hasError('required')">
+                                        Mật khẩu: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" [formControl]="Birthday" [(ngModel)]="student.Birthday" placeholder="Ngày sinh" disabled>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker disabled="false"></mat-datepicker>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input type="email" [(ngModel)]="student.Email" matInput [formControl]="Email" [errorStateMatcher]="matcher" placeholder="Email:">
+                                    <mat-error *ngIf="Email.hasError('required')">
+                                        Email: <strong>không được để trống</strong>
+                                    </mat-error>
+                                    <mat-error *ngIf="Email.hasError('isCodeUnique')">
+                                        Email: <strong>đã tồn tại!</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Chọn lớp học:</mat-label>
+                                    <mat-select matInput [formControl]="ClassName" [(ngModel)]="student.ClassName" [(value)]="student.ClassName">
+                                        <mat-option *ngFor="let c of classes" [value]="c.ClassName">{{ c.ClassName }}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ClassName.hasError('required')">
+                                        Lớp: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="student.Phone" matInput [formControl]="Phone" checkNumber [errorStateMatcher]="matcher" placeholder="Số điện thoại:">
+                                    <mat-error *ngIf="Phone.hasError('required')">
+                                        Số điện thoại: <strong>không được để trống</strong>
+                                    </mat-error>
+                                    <mat-error *ngIf="Phone.hasError('invalidNumber')">
+                                        Số điện thoại: <strong>phải là số!</strong>
+                                    </mat-error>
+                                    <mat-error *ngIf="Phone.hasError('isCodeUnique')">
+                                        Số điện thoại: <strong>đã tồn tại!</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="student.Address" matInput [formControl]="Address" [errorStateMatcher]="matcher" placeholder="Địa chỉ:">
+                                </mat-form-field>
+                                <label>Ảnh đại diện:</label>
+                                <input type="file" [formControl]="Image" name="Image" id="image" (change)="uploadImage($event)" style="display:none">
+                                <br>
+                                <img [src]="imgURL" style="width: 150px; height: 150px; cursor:pointer" id="upfile1" />
+                                <div align="left" class="imagediv">
+                                    <span class="visibleimg"></span>
+                                    <span class="showonhover">Upload</span>
+                                </div>
+                                <label id="example-radio-group-label">Giới tính:</label>
+                                <mat-radio-group aria-labelledby="example-radio-group-label" [(ngModel)]="student.Gender" [formControl]="Gender" class="example-radio-group">
+                                    <mat-radio-button class="example-radio-button gender" *ngFor="let gender of genders" [value]="gender.id" (change)="changeGender()">
+                                        {{ gender.name }}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+
+                                <mat-slide-toggle class="example-margin" [(ngModel)]="student.Status" [formControl]="Status" [color]="color" [checked]="student.Status" (change)="change()">
+                                    Kích hoạt!
+                                </mat-slide-toggle>
+                                <mat-card-actions class="button">
+                                    <button mat-raised-button color="accent" [routerLink]="['/sinh-vien/danh-sach']" routerLinkActive="router-link-active" matTooltip="Hủy yêu cầu">HỦY</button>
+                                    <button mat-raised-button color="primary" [disabled]="Name.invalid || ClassName.invalid || Email.invalid" type="submit" matTooltip="Gửi yêu cầu">GỬI</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

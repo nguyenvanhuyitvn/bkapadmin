@@ -1,0 +1,74 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Sửa tài liệu
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/tai-lieu-hoc-tap']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Tài liệu học tập</a></li>
+            <li class="active">Sửa tài liệu</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Sửa tài liệu</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content>
+                        <div class="action-bar">
+                            <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/tai-lieu-hoc-tap']" routerLinkActive="router-link-active">Quay lại</button>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <form method="POST" class="content-container" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+                                <mat-form-field>
+                                    <input [(ngModel)]="documents.DocName" matInput [formControl]="DocName" [errorStateMatcher]="matcher" placeholder="Tên tài liệu:">
+                                    <mat-error *ngIf="DocName.hasError('required')">
+                                        Tên tài liệu: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="documents.DocLink" matInput [formControl]="DocLink" [errorStateMatcher]="matcher" placeholder="Link tài liệu:">
+                                    <mat-error *ngIf="DocLink.hasError('required')">
+                                        Link tài liệu: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <textarea [formControl]="DocDescription" name="DocDescription" id="summernote" placeholder="Nội dung văn bản:"></textarea>
+                                <mat-form-field>
+                                    <mat-label>Chọn danh mục</mat-label>
+                                    <mat-select matInput [formControl]="DocTypeId" [(ngModel)]="documents.DocTypeId" [(value)]="documents.DocTypeId">
+                                        <mat-option *ngFor="let catalog of catalogs" [value]="catalog.DocTypeId">{{ catalog.DocTypeName }}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="DocTypeId.hasError('required')">
+                                        Danh mục: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <label>Ảnh đại diện:</label>
+                                <input type="file" [formControl]="DocImage" name="DocImage" id="image" (change)="uploadImage($event)" style="display:none">
+                                <br>
+                                <img [src]="imgURL" style="width: 150px; height: 150px; cursor:pointer" id="upfile1" />
+                                <div align="left" class="imagediv">
+                                    <span class="visibleimg"></span>
+                                    <span class="showonhover">Tải tài liệu</span>
+                                </div>
+                                <mat-slide-toggle class="example-margin" [(ngModel)]="documents.DocStatus" [formControl]="DocStatus" [color]="color" [checked]="documents.DocStatus">
+                                    Kích hoạt!
+                                </mat-slide-toggle>
+                                <mat-card-actions class="button">
+                                    <button mat-raised-button color="accent" [routerLink]="['/sinh-vien/danh-sach']" routerLinkActive="router-link-active" matTooltip="Hủy yêu cầu">HỦY</button>
+                                    <button mat-raised-button color="primary" type="submit" matTooltip="Gửi yêu cầu">GỬI</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

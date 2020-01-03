@@ -1,0 +1,29 @@
+<body class="inventory-body">
+    <div class="box">
+        <h2><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active"><b>BKAP </b><small>Information Portal</small></a></h2>
+        <form method='POST' [formGroup]='userForm' (ngSubmit)='onFormSubmit()'>
+            <div class="inputBox">
+                <input type="text" name="username" formControlName="username" #username required="required">
+                <label for="">Tên đăng nhập</label>
+                <span *ngIf="userForm.controls['username'].invalid && (userForm.controls['username'].dirty || userForm.controls['username'].touched )" class="invalid-feedback">
+                <span *ngIf="userForm.controls['username'].errors.required" style="color: red">Tên đăng nhập không được để trống</span>
+                </span>
+            </div>
+
+            <div class="inputBox">
+                <input type="password" name="password" formControlName="password" #password required="required">
+                <label for="">Password</label>
+                <div *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched )" class="invalid-feedback">
+                    <span *ngIf="userForm.controls['password'].errors.required" style="color: red">Mật khẩu không được để trống</span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-block slide" [disabled]="userForm.controls['username'].invalid || userForm.controls['password'].invalid">&nbsp;</button>
+
+
+        </form>
+        <div class="sign-up">
+            <a href="javascript:void(0);">Quên mật khẩu?</a><br>
+            <a ref="javascript:void(0);" class="text-center">Đăng ký thành viên mới</a>
+        </div>
+    </div>
+</body>

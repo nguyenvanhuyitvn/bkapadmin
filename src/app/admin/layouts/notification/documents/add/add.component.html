@@ -1,0 +1,72 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Thêm mới văn bản
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/bang-tin/van-ban']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Văn bản biểu mẫu</a></li>
+            <li class="active">Thêm mới văn bản</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Thêm văn bản</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content>
+                        <div class="action-bar">
+                            <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/tin-tuc']" routerLinkActive="router-link-active">Quay lại</button>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <form method="POST" class="content-container" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+                                <mat-form-field>
+                                    <input [(ngModel)]="documents.documentsName" matInput [formControl]="documentsName" (change)="ChangeToSlug()" [errorStateMatcher]="matcher" placeholder="Tên văn bản:">
+                                    <mat-error *ngIf="documentsName.hasError('required')">
+                                        Tên văn bản: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input [(ngModel)]="documents.slug" matInput [formControl]="slug" [errorStateMatcher]="matcher" placeholder="Slug:">
+                                    <mat-error *ngIf="slug.hasError('required')">
+                                        Slug: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <textarea [formControl]="documentsDescription" name="documentsDescription" id="summernote" placeholder="Nội dung văn bản:"></textarea>
+                                <mat-form-field class="example-full-width " style="width: 240px;">
+                                    <input [(ngModel)]="documents.documentsDate" matInput [formControl]="documentsDate" readonly [min]="minDate " [max]="maxDate " [matDatepicker]="picker " placeholder="Chọn ngày hỗ trợ ">
+                                    <mat-datepicker-toggle matSuffix [for]="picker "></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <mat-error *ngIf="documentsDate.hasError('required')">
+                                        Ngày: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <label>Tài liệu:</label>
+                                <input type="file" [formControl]="file" name="file" id="file" (change)="uploadFile($event)" style="display:none">
+                                <br>
+                                <div align="left" class="imagediv">
+                                    <span class="visibleimg"></span>
+                                    <span class="showonhover">Tải tài liệu</span>
+                                </div>
+                                <mat-slide-toggle class="example-margin" [(ngModel)]="documents.status" [formControl]="status" [color]="color" [checked]="documents.status">
+                                    Kích hoạt!
+                                </mat-slide-toggle>
+                                <mat-card-actions class="button">
+                                    <button mat-raised-button color="accent" [routerLink]="['/sinh-vien/danh-sach']" routerLinkActive="router-link-active" matTooltip="Hủy yêu cầu">HỦY</button>
+                                    <button mat-raised-button color="primary" type="submit" matTooltip="Gửi yêu cầu">GỬI</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

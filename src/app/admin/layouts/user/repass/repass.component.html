@@ -1,0 +1,80 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Thêm người dùng
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/nguoi-dung/']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Người dùng</a></li>
+            <li class="active">Thêm người dùng</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Thêm người dùng</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content class="content-container">
+                        <form method="POST" [formGroup]="repassForm" (ngSubmit)="onFormSubmit()">
+                            <input type="hidden" name="_method" value="PUT">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="Email">Email:</label>
+                                    <input type="Email" class="form-control" disabled [ngModel]="students.Email" formControlName="Email" #Email placeholder="Nhập Email người dùng">
+                                </div>
+                                <div class="form-group">
+                                    <label for="OldPassword" class="control-label">Mật khẩu cũ:</label>
+                                    <input type="password" name="OldPassword" class="form-control" formControlName="OldPassword" #OldPassword placeholder="Nhập mật khẩu cũ" reverse="true">
+                                    <span *ngIf="repassForm.controls['OldPassword'].invalid && (repassForm.controls['OldPassword'].dirty || repassForm.controls['OldPassword'].touched )">
+                                  <span *ngIf="repassForm.controls['OldPassword'].errors.required" class="span-alert">
+                                      <strong>Mật khẩu cũ!</strong> không được để trống.
+                                  </span>
+                                    <span *ngIf="repassForm.controls['OldPassword'].errors.minlength" class="span-alert">
+                                      <strong>Mật khẩu cũ!</strong> không được nhỏ hơn 6 ký tự.
+                                  </span>
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NewPassword" class="control-label">Mật khẩu mới:</label>
+                                    <input type="password" name="NewPassword" class="form-control" formControlName="NewPassword" #NewPassword placeholder="Nhập mật khẩu mới" reverse="true">
+                                    <span *ngIf="repassForm.controls['NewPassword'].invalid && (repassForm.controls['NewPassword'].dirty || repassForm.controls['NewPassword'].touched )">
+                                  <span *ngIf="repassForm.controls['NewPassword'].errors.required" class="span-alert">
+                                      <strong>Mật khẩu mới!</strong> không được để trống.
+                                  </span>
+                                    <span *ngIf="repassForm.controls['NewPassword'].errors.minlength" class="span-alert">
+                                      <strong>Mật khẩu mới!</strong> không nhỏ hơn 6 ký tự.
+                                  </span>
+
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ConfirmPassword">Nhập lại mật khẩu:</label>
+                                    <input type="password" class="form-control" formControlName="ConfirmPassword" #ConfirmPassword compare="NewPassword" placeholder="Nhập lại mật khẩu mới">
+                                    <span *ngIf="repassForm.controls['ConfirmPassword'].invalid && (repassForm.controls['ConfirmPassword'].dirty || repassForm.controls['ConfirmPassword'].touched )">
+                                  <span *ngIf="repassForm.controls['ConfirmPassword'].errors.required" class="span-alert">
+                                      <strong>Mật khẩu xác nhận!</strong> không được để trống.
+                                  </span>
+                                    <span *ngIf="repassForm.controls['ConfirmPassword'].errors.compare" class="span-alert">
+                                      <strong>Mật khẩu xác nhận!</strong> không khớp với Mật khẩu mới.
+                                  </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary" [disabled]="repassForm.pristine || repassForm.invalid">Submit</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

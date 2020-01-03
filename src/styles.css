@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* You can add global styles to this file, and also import other style files */
+
+
+/* * {
+    padding: 0;
+    margin: 0;
+} */
+
+
+/* Frontent */
+
+@import "assets/css/normalize.css";
+@import "assets/css/main.css";
+@import "assets/css/animate.min.css";
+@import "assets/bower_components/bootstrap/dist/css/bootstrap.min.css";
+@import "assets/css/font-awesome.min.css";
+@import "assets/vendor/OwlCarousel/owl.carousel.min.css";
+@import "assets/vendor/OwlCarousel/owl.theme.default.min.css";
+@import "assets/css/meanmenu.min.css";
+@import "assets/vendor/slider/css/nivo-slider.css";
+@import "assets/vendor/slider/css/preview.css";
+@import "assets/css/jquery.datetimepicker.css";
+@import "assets/css/select2.min.css";
+@import "assets/css/magnific-popup.css";
+@import "assets/css/hover-min.css";
+@import "assets/vendor/noUiSlider/nouislider.min.css";
+@import "assets/css/reImageGrid.css";
+@import "assets/css/bkap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Backend */
+
+@import "assets/bower_components/Ionicons/css/ionicons.min.css";
+@import "assets/bower_components/morris.js/morris.css";
+@import "assets/bower_components/jvectormap/jquery-jvectormap.css";
+@import "assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css";
+@import "assets/summer/summernote.css";
+html,
+body,
+app-root {
+    height: 100%;
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', "Helvetica Neue", 'sans-serif', 'Arial';
+}
+
+table td {
+    vertical-align: middle;
+}
+
+table tr {
+    font-size: 20px;
+}
+
+table th {
+    vertical-align: middle;
+    font-size: 24px;
+}
+
+.fa:hover {
+    cursor: pointer;
+}
+
+.guide-text {
+    font-size: 16px;
+}
+
+.guide-title {
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 18px;
+}
+
+.panel-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #151613;
+}

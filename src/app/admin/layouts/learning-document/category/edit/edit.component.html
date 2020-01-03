@@ -1,0 +1,50 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Sửa danh mục
+            <small>Lập trình viên quốc tế-BKAP</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/admin/tai-lieu-hoc-tap/danh-muc']" routerLinkActive="router-link-active"><i class="fa fa-dashboard"></i>Danh mục tài liệu</a></li>
+            <li class="active">Sửa danh mục</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-toolbar color="primary">
+                    <mat-toolbar-row>
+                        <h1 class="text-uppercase">Sửa danh mục tài liệu</h1>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card class="example-card">
+                    <mat-card-content>
+                        <div class="action-bar">
+                            <button mat-button mat-flat-button color="primary" [routerLink]="['/admin/tai-lieu-hoc-tap/danh-muc']" routerLinkActive="router-link-active">Quay lại</button>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <form method="PUT" class="content-container" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+                                <mat-form-field hintLabel="Tối đa 50 ký tự">
+                                    <input [(ngModel)]="category.DocTypeName" matInput maxlength="50" [formControl]="DocTypeName" [errorStateMatcher]="matcher" placeholder="Tiêu đề:">
+                                    <mat-hint align="end">{{ DocTypeName.value?.length || 0}}/50</mat-hint>
+                                    <mat-error *ngIf="DocTypeName.hasError('required')">
+                                        Tiêu đề: <strong>không được để trống</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-slide-toggle class="example-margin" [(ngModel)]="category.DocTypeStatus" [formControl]="DocTypeStatus" [color]="color" [checked]="category.DocTypeStatus">
+                                    Kích hoạt!
+                                </mat-slide-toggle>
+                                <mat-card-actions class="button">
+                                    <button mat-raised-button color="accent" [routerLink]="['/trang-chu']" routerLinkActive="router-link-active" matTooltip="Hủy yêu cầu">HỦY</button>
+                                    <button mat-raised-button color="primary" type="submit" matTooltip="Gửi yêu cầu">GỬI</button>
+                                </mat-card-actions>
+                            </form>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
